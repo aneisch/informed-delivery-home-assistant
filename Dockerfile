@@ -11,7 +11,9 @@ COPY ./nomail.gif /output/todays_mails.gif
 
 RUN chmod +x /usr/bin/retrieve_mail.py
 
-RUN echo '*  *  *  *  * . $HOME/.profile; /usr/bin/retrieve_mail.py > /dev/stdout' > /etc/crontab
+RUN echo '*  *  *  *  * source $HOME/.profile; /usr/bin/retrieve_mail.py > /dev/stdout' > /etc/cron.d/retrieve_mail
+
+RUN echo '*  *  *  *  * echo "Hello $(date)" >> /dev/stdout 2>&1' >> /etc/cron.d/retrieve_mail
 
 ENV MQTT_SERVER 10.0.1.22
 ENV MQTT_SERVER_PORT 1883
