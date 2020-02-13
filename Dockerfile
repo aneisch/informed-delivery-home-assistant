@@ -6,7 +6,7 @@ RUN pip install --no-cache-dir paho-mqtt && \
     apt-get clean
     
 COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
-COPY ./nomail.gif /data/
+COPY ./nomail.gif /
 
 RUN chmod +x /usr/bin/retrieve_mail.py
 
