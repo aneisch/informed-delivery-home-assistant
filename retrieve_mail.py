@@ -28,6 +28,8 @@ folder   = os.environ['EMAIL_FOLDER']
 GIF_FILE_NAME = os.environ['GIF_FILE_NAME']
 GIF_MAKER_OPTIONS = os.environ['GIF_MAKER_OPTIONS']
 
+SLEEP_TIME_IN_SECONDS = int(os.environ['SLEEP_TIME_IN_SECONDS'])
+
 # Login Method
 ###############################################################################
 def login():
@@ -143,52 +145,54 @@ def on_log(mosq, obj, level, string):
 # Primary logic for the component starts here
 ###############################################################################
 try:
-    try:
-        # create a new MQTT Client Object
-        mqttc = mosquitto.Mosquitto()
+    while True:
+        try:
+            # create a new MQTT Client Object
+            mqttc = mosquitto.Mosquitto()
 
-        # Set event callbacks
-        mqttc.on_connect = on_connect
+            # Set event callbacks
+            mqttc.on_connect = on_connect
 
-        # Uncomment below line to enable debug/console messages
-        # mqttc.on_log = on_log
+            # Uncomment below line to enable debug/console messages
+            # mqttc.on_log = on_log
 
-        # Connect to MQTT using the username/password set above
-        mqttc.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
-        mqttc.connect(MQTT_SERVER, MQTT_SERVER_PORT)
+            # Connect to MQTT using the username/password set above
+            mqttc.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
+            mqttc.connect(MQTT_SERVER, MQTT_SERVER_PORT)
 
-        print_message ("Connected to MQTT Server successfully")
-    except Exception as ex:
-        print_message ("Error connecting to MQTT.")
-        print_message (str(ex))
-        sys.exit(1)    
+            print_message ("Connected to MQTT Server successfully")
+        except Exception as ex:
+            print_message ("Error connecting to MQTT.")
+            print_message (str(ex))
+            sys.exit(1)    
 
-    try:
-        account = login()
-        selectFolder(account, folder)
-    except Exception as exx:
-        print_message ("Error connecting logging into email server.")
-        print_message (str(exx))
-        sys.exit(1)    
+        try:
+            account = login()
+            selectFolder(account, folder)
+        except Exception as exx:
+            print_message ("Error connecting logging into email server.")
+            print_message (str(exx))
+            sys.exit(1)    
 
-    # Get the mail count and drop it in the MQTT
-    mc = get_mails(account)
-    mqttc.publish(MQTT_USPS_MAIL_TOPIC, str(mc), qos=0, retain=False)
+        # Get the mail count and drop it in the MQTT
+        mc = get_mails(account)
+        mqttc.publish(MQTT_USPS_MAIL_TOPIC, str(mc), qos=0, retain=False)
 
-    # Get the package count and drop it in the MQTT
-    pc = package_count(account)
-    mqttc.publish(MQTT_USPS_PACKAGE_TOPIC, str(pc), qos=0, retain=False)
+        # Get the package count and drop it in the MQTT
+        pc = package_count(account)
+        mqttc.publish(MQTT_USPS_PACKAGE_TOPIC, str(pc), qos=0, retain=False)
 
-    # if there are no mails, make sure you delete the old file, 
-    # so that the next day, you don't see yesterday's mails
-    # when there are no mails, copy nomail.jpg as your default file
-    if mc == 0:
-        os.remove('/output/' + GIF_FILE_NAME)
-        copyfile('/' + "nomail.gif", '/output/' + GIF_FILE_NAME)
+        # if there are no mails, make sure you delete the old file, 
+        # so that the next day, you don't see yesterday's mails
+        # when there are no mails, copy nomail.jpg as your default file
+        if mc == 0:
+            os.remove('/output/' + GIF_FILE_NAME)
+            copyfile('/' + "nomail.gif", '/output/' + GIF_FILE_NAME)
 
-    # disconnect from MQTT
-    mqttc.disconnect()
-    print_message ("Disconnected MQTT successfully.")
+        # disconnect from MQTT
+        mqttc.disconnect()
+        print_message ("Disconnected MQTT successfully. Will check your mails again in {} seconds.".format(str(SLEEP_TIME_IN_SECONDS)))
+        time.sleep(SLEEP_TIME_IN_SECONDS)
 
 except Exception as e:
     print_message ("Error occured while either processing email or publishing messages to MQTT.")
