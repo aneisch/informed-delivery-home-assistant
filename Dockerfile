@@ -2,7 +2,7 @@ FROM python:3
 
 RUN pip install --no-cache-dir paho-mqtt && \
     apt-get update && \
-    apt-get install -y imagemagick cron && \
+    apt-get install -y imagemagick cron vim && \
     apt-get clean
     
 COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
