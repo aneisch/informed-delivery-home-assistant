@@ -31,4 +31,4 @@ ENV GIF_MAKER_OPTIONS '/usr/bin/convert  -delay 300 -loop 0'
 
 ENV SLEEP_TIME_IN_SECONDS 300
 
-ENTRYPOINT /usr/bin/retrieve_mail.py
+ENTRYPOINT /usr/bin/retrieve_mail.py > /dev/stdout
