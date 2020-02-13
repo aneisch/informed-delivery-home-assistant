@@ -9,8 +9,8 @@ import paho.mqtt.client as mosquitto
 from shutil import copyfile
 
 # MQTT Server Address and Port
-MQTT_SERVER = str(os.environ['MQTT_SERVER'])
-MQTT_SERVER_PORT = os.environ['MQTT_SERVER_PORT']
+MQTT_SERVER = os.environ['MQTT_SERVER']
+MQTT_SERVER_PORT = int(os.environ['MQTT_SERVER_PORT'])
 
 # MQTT User name and Password
 MQTT_USERNAME = os.environ['MQTT_USERNAME']
@@ -20,7 +20,7 @@ MQTT_USPS_MAIL_TOPIC = os.environ['MQTT_USPS_MAIL_TOPIC']
 MQTT_USPS_PACKAGE_TOPIC = os.environ['MQTT_USPS_PACKAGE_TOPIC']
 
 HOST = os.environ['EMAIL_HOST']
-PORT = os.environ['EMAIL_PORT']
+PORT = int(os.environ['EMAIL_PORT'])
 USERNAME = os.environ['EMAIL_USERNAME']
 PASSWORD = os.environ['EMAIL_PASSWORD']
 folder   = os.environ['EMAIL_FOLDER']
