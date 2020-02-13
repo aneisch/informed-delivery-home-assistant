@@ -11,10 +11,6 @@ COPY ./nomail.gif /output/todays_mails.gif
 
 RUN chmod +x /usr/bin/retrieve_mail.py
 
-RUN echo '* * * * * root source $HOME/.profile; /usr/bin/retrieve_mail.py > /dev/stdout' > /etc/cron.d/retrieve_mail
-
-RUN echo '* * * * * root echo "Hello $(date)" >> /dev/stdout 2>&1' >> /etc/cron.d/retrieve_mail
-
 ENV MQTT_SERVER 10.0.1.22
 ENV MQTT_SERVER_PORT 1883
 
@@ -32,5 +28,9 @@ ENV EMAIL_FOLDER informed_delivery
 
 ENV GIF_FILE_NAME todays_mails.gif
 ENV GIF_MAKER_OPTIONS '/usr/bin/convert  -delay 300 -loop 0'
+
+RUN echo '* * * * * root source $HOME/.profile; /usr/bin/retrieve_mail.py > /dev/stdout' > /etc/cron.d/retrieve_mail
+
+RUN echo '* * * * * root echo "Hello $(date)" >> /dev/stdout 2>&1' >> /etc/cron.d/retrieve_mail
 
 ENTRYPOINT cron -f
