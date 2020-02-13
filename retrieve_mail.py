@@ -127,7 +127,7 @@ def package_count(account):
 # Prints message to console
 ###############################################################################
 def print_message(message):
-    print("{} USPS: {}".format(datetime.datetime.today().strftime('%d-%b-%Y %H:%m:%S%p'), message))
+    print("{} USPS: {}".format(datetime.datetime.today().strftime('%d-%b-%Y %H:%M:%S%p'), message))
 
 # OnConnect Callback
 ###############################################################################
