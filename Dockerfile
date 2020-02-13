@@ -6,6 +6,7 @@ RUN pip install --no-cache-dir paho-mqtt && \
     apt-get clean
     
 COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
+COPY ./nomail.gif /data/
 
 RUN chmod +x /usr/bin/retrieve_mail.py
 
@@ -20,7 +21,7 @@ ENV MQTT_PASSWORD password
 ENV MQTT_USPS_MAIL_TOPIC /usps/mails
 ENV MQTT_USPS_PACKAGE_TOPIC /usps/packages
 
-ENV EMAIL_HOST imap-mail.outlook.com
+ENV EMAIL_HOST imap.gmail.com
 ENV EMAIL_PORT 993
 ENV EMAIL_USERNAME xxx.xxx@outlook.com
 ENV EMAIL_PASSWORD xxx
