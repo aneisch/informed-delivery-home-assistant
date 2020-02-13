@@ -5,11 +5,11 @@ RUN pip install --no-cache-dir paho-mqtt && \
     apt-get install imagemagick && \
     apt-get clean
     
-COPY ./retreive_mail.py /usr/bin/retreive_mail.py
+COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
 
-RUN chmod +x /usr/bin/retreive_mail.py
+RUN chmod +x /usr/bin/retrieve_mail.py
 
-RUN echo '00  *  *  *  *  /usr/bin/retreive_mail.py' >> /etc/crontab
+RUN echo '00  *  *  *  *  /usr/bin/retrieve_mail.py' >> /etc/crontab
 
 ENV MQTT_SERVER 10.0.1.22
 ENV MQTT_SERVER_PORT 1883
