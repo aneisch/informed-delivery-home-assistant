@@ -188,7 +188,7 @@ try:
 
     # disconnect from MQTT
     mqttc.disconnect()
-    print_message ("Disconnected MQTT successfully. Will check your mails again in {} seconds.".format(str(SLEEP_TIME_IN_SECONDS)))
+    print_message ("Disconnected MQTT successfully.")
 
 except Exception as e:
     print_message ("Error occured while either processing email or publishing messages to MQTT.")
