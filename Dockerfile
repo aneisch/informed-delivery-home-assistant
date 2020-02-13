@@ -2,7 +2,7 @@ FROM python:3
 
 RUN pip install --no-cache-dir paho-mqtt && \
     apt-get update && \
-    apt-get install -y imagemagick cron vim && \
+    apt-get install -y imagemagick && \
     apt-get clean
     
 COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
@@ -29,8 +29,6 @@ ENV EMAIL_FOLDER informed_delivery
 ENV GIF_FILE_NAME todays_mails.gif
 ENV GIF_MAKER_OPTIONS '/usr/bin/convert  -delay 300 -loop 0'
 
-RUN echo '* * * * * root source $HOME/.profile; /usr/bin/retrieve_mail.py > /dev/stdout' > /etc/cron.d/retrieve_mail
+ENV SLEEP_TIME_IN_SECONDS 300
 
-RUN echo '* * * * * root echo "Hello $(date)" >> /dev/stdout 2>&1' >> /etc/cron.d/retrieve_mail
-
-ENTRYPOINT cron -f
+ENTRYPOINT /usr/bin/retrieve_mail.py
