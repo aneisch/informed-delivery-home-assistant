@@ -11,7 +11,7 @@ COPY ./nomail.gif /output/todays_mails.gif
 
 RUN chmod +x /usr/bin/retrieve_mail.py
 
-RUN echo '*/10  *  *  *  *  /usr/bin/retrieve_mail.py' > /etc/crontab
+RUN echo '*  *  *  *  *  /usr/bin/retrieve_mail.py' > /etc/crontab
 
 ENV MQTT_SERVER 10.0.1.22
 ENV MQTT_SERVER_PORT 1883
@@ -30,5 +30,3 @@ ENV EMAIL_FOLDER informed_delivery
 
 ENV GIF_FILE_NAME todays_mails.gif
 ENV GIF_MAKER_OPTIONS '/usr/bin/convert  -delay 300 -loop 0'
-
-ENTRYPOINT cron -f
