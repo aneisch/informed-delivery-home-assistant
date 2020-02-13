@@ -2,14 +2,14 @@ FROM python:3
 
 RUN pip install --no-cache-dir paho-mqtt && \
     apt-get update && \
-    apt-get install imagemagick && \
+    apt-get install -y imagemagick cron && \
     apt-get clean
     
 COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
 
 RUN chmod +x /usr/bin/retrieve_mail.py
 
-RUN echo '00  *  *  *  *  /usr/bin/retrieve_mail.py' >> /etc/crontab
+RUN echo '00  *  *  *  *  /usr/bin/retrieve_mail.py' > /etc/crontab
 
 ENV MQTT_SERVER 10.0.1.22
 ENV MQTT_SERVER_PORT 1883
@@ -29,4 +29,4 @@ ENV EMAIL_FOLDER inbox
 ENV GIF_FILE_NAME todays_mails.gif
 ENV GIF_MAKER_OPTIONS '/usr/bin/convert  -delay 300 -loop 0'
 
-ENTRYPOINT crond -l 2 -f
+ENTRYPOINT cron -f
