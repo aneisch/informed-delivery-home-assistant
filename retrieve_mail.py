@@ -9,7 +9,7 @@ import paho.mqtt.client as mosquitto
 from shutil import copyfile
 
 # MQTT Server Address and Port
-MQTT_SERVER = os.environ['MQTT_SERVER']
+MQTT_SERVER = str(os.environ['MQTT_SERVER'])
 MQTT_SERVER_PORT = os.environ['MQTT_SERVER_PORT']
 
 # MQTT User name and Password
