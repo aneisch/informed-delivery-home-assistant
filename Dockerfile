@@ -30,3 +30,5 @@ ENV EMAIL_FOLDER informed_delivery
 
 ENV GIF_FILE_NAME todays_mails.gif
 ENV GIF_MAKER_OPTIONS '/usr/bin/convert  -delay 300 -loop 0'
+
+ENTRYPOINT cron -f
