@@ -8,7 +8,7 @@ Retrieves USPS mail and package info from informed delivery emails via IMAP. Pub
 
 ## Usage
 
-### Example docker-compose
+### Example docker-compose:
 
 ```yaml
 version: '3.2'
@@ -28,7 +28,7 @@ services:
           - SLEEP_TIME_IN_SECONDS=600
 ```
 
-### Example `docker run`
+### Example `docker run`:
 `docker run -d -v '/tmp/:/output/' -v '/etc/localtime:/etc/localtime:ro' --name informed_delivery -e EMAIL_USERNAME=your_email@your_provider.com -e EMAIL_PASSWORD=your_password -e SLEEP_TIME_IN_SECONDS=600 aneisch/informed-delivery-home-assistant`
 
 ## Environmental Variables
@@ -53,6 +53,5 @@ variable | default | description
 
 
 **Notes**: 
-* If using Gmail, you will need to [allow less secure apps](https://hotter.io/docs/email-accounts/secure-app-gmail/) to login. 
-* I suggest making a separate Google account for this. 
-If MQTT doesn't require login you can leave MQTT_USERNAME and MQTT_PASSWORD as is. 
+* If using Gmail, you will need to [allow less secure apps](https://hotter.io/docs/email-accounts/secure-app-gmail/) to login. I suggest making a separate Google account for this. You will also need to enable IMAP from your Gmail inbox.
+* If MQTT doesn't require login you can leave MQTT_USERNAME and MQTT_PASSWORD as is. 
