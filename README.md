@@ -27,7 +27,8 @@ services:
 ```
 
 ## Environmental Variables
-You only need to specify the environmental variables you want to override
+You only need to specify the environmental variables you want to override:
+
 variable | default | description
 -- | -- | --
 `MQTT_SERVER` | 10.0.1.22 | MQTT server address
