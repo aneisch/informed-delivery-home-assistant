@@ -3,6 +3,7 @@
 
 Retrieves USPS mail and package info from informed delivery emails via IMAP. Publishes mail and package count to MQTT and creates scanned mail gif. This container image was created based on:
 * https://blog.kalavala.net/usps/homeassistant/mqtt/2018/01/12/usps.html
+* https://www.awesome-automations.com/blog/usps/
 * https://community.home-assistant.io/t/a-working-usps-component-solved-for-now/41012/14
 
 
@@ -51,7 +52,12 @@ variable | default | description
 `GIF_MAKER_OPTIONS` | '/usr/bin/convert -delay 300 -loop 0' | Gif creation options
 `SLEEP_TIME_IN_SECONDS` | 300 | Sleep time between checks
 
+Email Provider | Host Address | Port
+-- | -- | --
+GMail | imap.gmail.com | 993
+Yahoo | imap.mail.yahoo.com | 993
+Outlook | imap-mail.outlook.com | 993
 
-**Notes**: 
+### Notes: 
 * If using Gmail, you will need to [allow less secure apps](https://hotter.io/docs/email-accounts/secure-app-gmail/) to login. I suggest making a separate Google account for this. You will also need to enable IMAP from your Gmail inbox.
 * If MQTT doesn't require login you can leave MQTT_USERNAME and MQTT_PASSWORD as is. 
