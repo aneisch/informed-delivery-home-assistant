@@ -15,7 +15,7 @@ version: '3.2'
 services:
     informed_delivery:
         container_name: informed_delivery
-        image: aneisch/informed_delivery_home_assistant
+        image: aneisch/informed-delivery-home-assistant
         volumes:
           - '/etc/localtime:/etc/localtime:ro'
           # volume for mails image output
@@ -27,6 +27,9 @@ services:
           - MQTT_USPS_PACKAGE_TOPIC=/sensor/usps/packages
           - SLEEP_TIME_IN_SECONDS=600
 ```
+
+### Example `docker run`
+`docker run -d -v '/tmp/:/output/' -v '/etc/localtime:/etc/localtime:ro' --name informed_delivery -e EMAIL_USERNAME=your_email@your_provider.com -e EMAIL_PASSWORD=your_password -e SLEEP_TIME_IN_SECONDS=600 aneisch/informed-delivery-home-assistant`
 
 ## Environmental Variables
 You only need to specify the environmental variables in `docker run` or your docker-compose file that you want/need to override:
