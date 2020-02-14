@@ -31,7 +31,10 @@ services:
 
 ### Example `docker run`:
 ```bash
-docker run -d -v '/tmp/:/output/' -v '/etc/localtime:/etc/localtime:ro' --name informed_delivery -e EMAIL_USERNAME=your_email@your_provider.com -e EMAIL_PASSWORD=your_password -e SLEEP_TIME_IN_SECONDS=600 aneisch/informed-delivery-home-assistant
+docker run -d -v '/tmp/:/output/' -v '/etc/localtime:/etc/localtime:ro' \
+--name informed_delivery -e EMAIL_USERNAME=your_email@your_provider.com \
+-e EMAIL_PASSWORD=your_password -e SLEEP_TIME_IN_SECONDS=600 \
+aneisch/informed-delivery-home-assistant
 ```
 
 ### Environmental Variables
