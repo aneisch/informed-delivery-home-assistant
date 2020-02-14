@@ -33,8 +33,8 @@ variable | default | description
 -- | -- | --
 `MQTT_SERVER` | 10.0.1.22 | MQTT server address
 `MQTT_SERVER_PORT` | 1883 | MQTT server port
-`MQTT_USERNAME` | mosquitto | MQTT username
-`MQTT_PASSWORD` | password | MQTT password
+`MQTT_USERNAME` | mosquitto | MQTT username (can be ignored if unneeded)
+`MQTT_PASSWORD` | password | MQTT password (can be ignored if unneeded)
 `MQTT_USPS_MAIL_TOPIC` | /usps/mails | Topic where mail count is published
 `MQTT_USPS_PACKAGE_TOPIC` | /usps/packages | Topic where package count is published
 `EMAIL_HOST` | imap.gmail.com | Email provider
