@@ -62,8 +62,8 @@ def get_mails(account):
                               today + '")')
     if rv == 'OK':
         
-        message_count = len(str(data[0]).split(" "))                                  
-        print_message('Found {} Informed Delivery messages'.format(message_count)) 
+        message_count = len(str(data[0]).split(" ")) - 1
+        print_message('Found {} Informed Delivery messages'.format(message_count))
         
         for num in data[0].split():
             rv, data = account.fetch(num, '(RFC822)')
