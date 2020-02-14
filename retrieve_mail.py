@@ -61,9 +61,8 @@ def get_mails(account):
                               '(FROM "USPS" SUBJECT "Informed Delivery Daily Digest" SINCE "' + 
                               today + '")')
     if rv == 'OK':
-        
         message_count = len(str(data[0]).split(" ")) - 1
-        print_message('Found {} Informed Delivery messages'.format(message_count))
+        print_message("Found {} Informed Delivery messages".format(message_count))
         
         for num in data[0].split():
             rv, data = account.fetch(num, '(RFC822)')
@@ -75,7 +74,7 @@ def get_mails(account):
                 if part.get('Content-Disposition') is None:
                     continue
                 if '_' in part.get_filename():
-                    print_message('Found an advertisement, skipping it!')
+                    print_message("Found an advertisement, skipping it!")
                     continue
 
                 filepath = '/output/' + part.get_filename()
@@ -85,7 +84,7 @@ def get_mails(account):
                 image_count = image_count + 1
                 fp.close()
             
-            print_message ('Found {} mails and images in your email.'.format(image_count))
+            print_message ("Found {} mails and images in your email".format(image_count))
 
             if image_count > 0:
                 all_images = ""
@@ -102,7 +101,7 @@ def get_mails(account):
                     os.remove(image)
     
     if (image_count == 0):
-        print_message("Found '{}' mails".format(image_count))
+        print_message("Found {} mails".format(image_count))
 
     return image_count
 
@@ -124,7 +123,7 @@ def package_count(account):
     if rv == 'OK':
         count = len(data[0].split())
 
-    print_message("Found '{}' packages".format(count))
+    print_message("Found {} packages".format(count))
 
     return count
 
@@ -156,9 +155,6 @@ try:
 
             # Set event callbacks
             mqttc.on_connect = on_connect
-
-            # Uncomment below line to enable debug/console messages
-            # mqttc.on_log = on_log
 
             # Connect to MQTT using the username/password set above
             mqttc.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
