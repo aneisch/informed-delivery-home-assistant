@@ -48,7 +48,7 @@ variable | default | description
 `MQTT_PASSWORD` | password | MQTT password (can be ignored if unneeded)
 `MQTT_USPS_MAIL_TOPIC` | /usps/mails | Topic where mail count is published
 `MQTT_USPS_PACKAGE_TOPIC` | /usps/packages | Topic where package count is published
-`EMAIL_HOST` | imap.gmail.com | Email provider
+`EMAIL_HOST` | imap.gmail.com | Email provider url (see table below)
 `EMAIL_PORT` | 993 | Email IMAP port
 `EMAIL_USERNAME` | xxx.xxx@outlook.com | Email login
 `EMAIL_PASSWORD` | xxx | Email password
