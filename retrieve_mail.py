@@ -61,6 +61,10 @@ def get_mails(account):
                               '(FROM "USPS" SUBJECT "Informed Delivery Daily Digest" SINCE "' + 
                               today + '")')
     if rv == 'OK':
+        
+        message_count = len(str(data[0]).split(" "))                                  
+        print_message('Found {} Informed Delivery messages'.format(message_count)) 
+        
         for num in data[0].split():
             rv, data = account.fetch(num, '(RFC822)')
             msg = email.message_from_string(data[0][1].decode('utf-8'))
@@ -87,7 +91,7 @@ def get_mails(account):
                 all_images = ""
 
                 for image in images:
-                    all_images = all_images + image + " "
+                    all_images += image + " "
 
                 print_message ("Creating animated GIF out of {} images.".format(image_count))
                 os.system( GIF_MAKER_OPTIONS + all_images + 
