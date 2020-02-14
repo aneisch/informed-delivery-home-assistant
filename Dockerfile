@@ -1,9 +1,7 @@
-FROM python:3
+FROM python:3-alpine
 
 RUN pip install --no-cache-dir paho-mqtt && \
-    apt-get update && \
-    apt-get install -y imagemagick && \
-    apt-get clean
+    apk --update add --no-cache imagemagick
     
 COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
 COPY ./nomail.gif /
@@ -27,7 +25,7 @@ ENV EMAIL_PASSWORD xxx
 ENV EMAIL_FOLDER informed_delivery
 
 ENV GIF_FILE_NAME todays_mails.gif
-ENV GIF_MAKER_OPTIONS '/usr/bin/convert  -delay 300 -loop 0'
+ENV GIF_MAKER_OPTIONS '/usr/bin/convert -delay 300 -loop 0'
 
 ENV SLEEP_TIME_IN_SECONDS 300
 

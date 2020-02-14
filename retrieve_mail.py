@@ -186,7 +186,6 @@ try:
         # so that the next day, you don't see yesterday's mails
         # when there are no mails, copy nomail.jpg as your default file
         if mc == 0:
-            os.remove('/output/' + GIF_FILE_NAME)
             copyfile('/' + "nomail.gif", '/output/' + GIF_FILE_NAME)
 
         # disconnect from MQTT
