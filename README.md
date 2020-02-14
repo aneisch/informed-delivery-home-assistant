@@ -27,7 +27,7 @@ services:
 ```
 
 ## Environmental Variables
-You only need to specify the environmental variables you want to override:
+You only need to specify the environmental variables in `docker run` or your docker-compose file that you want/need to override:
 
 variable | default | description
 -- | -- | --
