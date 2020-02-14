@@ -3,11 +3,11 @@ FROM python:3-alpine
 RUN pip install --no-cache-dir paho-mqtt && \
     apk --update add --no-cache imagemagick
     
-COPY ./retrieve_mail.py /usr/bin/retrieve_mail.py
+COPY ./retrieve_mail.py /usr/local/bin/retrieve_mail.py
 COPY ./nomail.gif /
 COPY ./nomail.gif /output/todays_mails.gif
 
-RUN chmod +x /usr/bin/retrieve_mail.py
+RUN chmod +x /usr/local/bin/retrieve_mail.py
 
 ENV MQTT_SERVER 10.0.1.22
 ENV MQTT_SERVER_PORT 1883
@@ -29,4 +29,4 @@ ENV GIF_MAKER_OPTIONS '/usr/bin/convert -delay 300 -loop 0'
 
 ENV SLEEP_TIME_IN_SECONDS 300
 
-ENTRYPOINT ["python3","-u","/usr/bin/retrieve_mail.py"]
+ENTRYPOINT ["python3","-u","/usr/local/bin/retrieve_mail.py"]
