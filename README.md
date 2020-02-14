@@ -1,7 +1,7 @@
 # Informed Delivery Home Assistant
 <a href="https://www.buymeacoffee.com/aneisch" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" width="150px" height="35px" alt="Buy Me A Coffee" style="height: 35px !important;width: 150px !important;" ></a><br>
 
-Retrieves USPS mail and package info from informed delivery emails via IMAP. Publishes mail and package count to MQTT and creates scanned mail gif. This container image was created based on content from the top link, check it out for additional Home Assistant sensor integration info. Thanks to [@skalavala](https://github.com/skalavala) and [arychj](https://github.com/arychj)
+Retrieves USPS mail and package info from informed delivery emails via IMAP. Publishes mail and package count to MQTT and creates scanned mail gif. This container image was created based on content from the top link, check it out for additional Home Assistant sensor integration info. Credit to [@skalavala](https://github.com/skalavala) and [arychj](https://github.com/arychj) for the code and writeups!
 * https://www.awesome-automations.com/blog/usps/ 
 * https://community.home-assistant.io/t/a-working-usps-component-solved-for-now/41012/14
 
