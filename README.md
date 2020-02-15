@@ -5,6 +5,7 @@ Retrieves USPS mail and package info from informed delivery emails via IMAP. Pub
 * https://www.awesome-automations.com/blog/usps/ 
 * https://community.home-assistant.io/t/a-working-usps-component-solved-for-now/41012/14
 
+https://hub.docker.com/r/aneisch/informed-delivery-home-assistant
 
 ## Usage
 
