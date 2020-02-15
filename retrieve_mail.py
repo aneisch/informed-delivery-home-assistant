@@ -93,7 +93,7 @@ def get_mails(account):
                     all_images += image + " "
 
                 print_message ("Creating animated GIF out of {} images.".format(image_count))
-                os.system( GIF_MAKER_OPTIONS + all_images + 
+                os.system( GIF_MAKER_OPTIONS + " " + all_images + 
                            '/output/' + GIF_FILE_NAME )
 
                 print_message ("Cleaning up...")
